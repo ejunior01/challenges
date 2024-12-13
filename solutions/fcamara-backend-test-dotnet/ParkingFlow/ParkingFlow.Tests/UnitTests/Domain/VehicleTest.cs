@@ -7,7 +7,7 @@ namespace ParkingFlow.Tests.UnitTests.Domain;
 public class VehicleTest
 {
     [Fact]
-    public void Should_CreateVehicle_When_ValidInput()
+    public void Should_create_vehicle_when_valid_input()
     {
        var vehicle = new Vehicle("Fiat","Uno","Preta","AAA-1515",TypeVehicle.Car);
        vehicle.Should().NotBeNull();
@@ -18,7 +18,7 @@ public class VehicleTest
     [InlineData("Fiat","U","Preta","AAA-1515")]
     [InlineData("Fiat","Uno","P","AAA-1515")]
     [InlineData("Fiat","Uno","Preta","A")]
-    public void Should_ThrowException_When_CreatingVehicleWithValuesAreLessThanAcceptable(string brand,string model,string color,string plate)
+    public void Should_throw_exception_when_creating_vehicle_with_values_are_less_than_acceptable(string brand,string model,string color,string plate)
     {
         var act = () =>
         {
@@ -42,7 +42,7 @@ public class VehicleTest
     [InlineData("Fiat","","Preta","AAA-1515")]
     [InlineData("Fiat","Uno","","AAA-1515")]
     [InlineData("Fiat","Uno","Preta","")]
-    public void Should_ThrowException_When_CreatingVehicleWithValuesAreIsNullOrWhiteSpace(string? brand,string? model,string? color,string? plate)
+    public void Should_throw_exception_when_creating_vehicle_with_values_are_is_null_or_whiteSpace(string? brand,string? model,string? color,string? plate)
     {
         var act = () =>
         {
