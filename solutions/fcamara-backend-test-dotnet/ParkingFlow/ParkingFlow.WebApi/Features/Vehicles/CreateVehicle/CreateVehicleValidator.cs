@@ -3,7 +3,7 @@ using ParkingFlow.WebApi.Domain.Vehicles;
 
 namespace ParkingFlow.WebApi.Features.Vehicles.CreateVehicle;
 
-public class CreateVehicleValidator: AbstractValidator<CreateVehicleCommand>
+public class CreateVehicleValidator : AbstractValidator<CreateVehicleCommand>
 {
     public CreateVehicleValidator()
     {
@@ -18,7 +18,7 @@ public class CreateVehicleValidator: AbstractValidator<CreateVehicleCommand>
             .NotEmpty()
             .MinimumLength(2)
             .MaximumLength(50);
-        
+
         RuleFor(v => v.Color)
             .NotNull()
             .NotEmpty()
@@ -35,5 +35,4 @@ public class CreateVehicleValidator: AbstractValidator<CreateVehicleCommand>
             .NotEmpty()
             .Matches(@"(^[a-zA-z]{3}-\d{4}$)|(^[a-zA-z]{3}\d{1}[a-zA-z]{1}\d{2}$)");
     }
-    
 }

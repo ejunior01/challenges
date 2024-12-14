@@ -21,15 +21,9 @@ public class UpdateVehicleEndpoint : ICarterModule
         ISender sender,
         CancellationToken cancellationToken)
     {
-        if (string.IsNullOrWhiteSpace(plate))
-        {
-            return TypedResults.BadRequest("Invalid plate");
-        }
+        if (string.IsNullOrWhiteSpace(plate)) return TypedResults.BadRequest("Invalid plate");
 
-        if (!plate.Equals(request.Plate))
-        {
-            return TypedResults.UnprocessableEntity("Invalid plate");
-        }
+        if (!plate.Equals(request.Plate)) return TypedResults.UnprocessableEntity("Invalid plate");
 
         var command =
             new UpdateVehicleCommand(request.Brand, request.Model, request.Color, request.Plate, request.Type);

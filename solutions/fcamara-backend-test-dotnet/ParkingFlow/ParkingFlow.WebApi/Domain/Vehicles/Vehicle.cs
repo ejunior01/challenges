@@ -2,7 +2,10 @@
 
 public class Vehicle
 {
-    private Vehicle(){}
+    private Vehicle()
+    {
+    }
+
     public Vehicle(string brand, string model, string color, Plate plate, TypeVehicle type)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(brand, nameof(brand));
@@ -11,7 +14,7 @@ public class Vehicle
         ArgumentOutOfRangeException.ThrowIfGreaterThan(2, model.Length, nameof(model));
         ArgumentException.ThrowIfNullOrWhiteSpace(color, nameof(color));
         ArgumentOutOfRangeException.ThrowIfGreaterThan(2, color.Length, nameof(color));
-    
+
         Id = Guid.NewGuid();
         Brand = brand;
         Model = model;

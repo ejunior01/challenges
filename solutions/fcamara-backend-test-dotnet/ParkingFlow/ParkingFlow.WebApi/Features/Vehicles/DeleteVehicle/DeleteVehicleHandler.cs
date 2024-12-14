@@ -13,8 +13,9 @@ public class DeleteVehicleHandler(IVehicleRepository vehicleRepository, IUnitOfW
     {
         var vehicle = await vehicleRepository.GetByPlate(command.Plate);
 
-        if (vehicle is null) return Result.Fail(new Error($"Vehicle {command.Plate} not found"));;
-        
+        if (vehicle is null) return Result.Fail(new Error($"Vehicle {command.Plate} not found"));
+        ;
+
         vehicleRepository.Remove(vehicle);
         await unitOfWork.SaveChangesAsync(cancellationToken);
         return Result.Ok();

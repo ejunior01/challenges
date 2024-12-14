@@ -20,6 +20,6 @@ public class CreateVehicleEndpoint : ICarterModule
 
         if (result.IsFailed) return TypedResults.BadRequest(result.Errors);
 
-        return TypedResults.Created($"api/v1/{ApiRoutes.Vehicles.Get}/{result.Value.Plate}",result.Value);
+        return TypedResults.Created($"api/v1/{ApiRoutes.Vehicles.Get}/{result.Value.Plate}", result.Value);
     }
 }

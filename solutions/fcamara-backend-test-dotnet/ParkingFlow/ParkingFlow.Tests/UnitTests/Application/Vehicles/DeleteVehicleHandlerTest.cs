@@ -17,7 +17,7 @@ public class DeleteVehicleHandlerTest
         var vehicle = new Vehicle("Fiat", "Uno", "Preta", Plate.Create("AAA-1515"), TypeVehicle.Car);
         vehicleRepository.Setup((v) => v.GetByPlate(It.IsAny<string>())).ReturnsAsync(vehicle);
 
-        var command = new DeleteVehicleCommand( "AAA-1515");
+        var command = new DeleteVehicleCommand("AAA-1515");
         var handler = new DeleteVehicleHandler(vehicleRepository.Object, unitOfWork.Object);
         var result = await handler.Handle(command);
 
@@ -34,7 +34,7 @@ public class DeleteVehicleHandlerTest
 
         vehicleRepository.Setup((v) => v.GetByPlate(It.IsAny<string>())).ReturnsAsync(value: null);
 
-        var command = new DeleteVehicleCommand( "AAA-1515");
+        var command = new DeleteVehicleCommand("AAA-1515");
         var handler = new DeleteVehicleHandler(vehicleRepository.Object, unitOfWork.Object);
         var result = await handler.Handle(command);
 

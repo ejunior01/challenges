@@ -9,7 +9,7 @@ public class ParkingFlowDbContext(DbContextOptions<ParkingFlowDbContext> options
     DbContext(options), IUnitOfWork
 {
     public DbSet<Vehicle> Vehicles { get; set; }
-    
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

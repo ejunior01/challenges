@@ -38,11 +38,10 @@ public class VehicleConfiguration : IEntityTypeConfiguration<Vehicle>
                 .HasColumnName("plate")
                 .HasMaxLength(10)
                 .IsRequired();
-            
+
             plate.HasIndex(p => p.Value)
                 .IsUnique()
                 .HasDatabaseName("IX_Vehicle_Plate");
         });
-        
     }
 }

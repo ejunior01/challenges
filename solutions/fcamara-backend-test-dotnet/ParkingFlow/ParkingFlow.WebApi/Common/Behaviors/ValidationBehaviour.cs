@@ -14,6 +14,7 @@ public class ValidationBehaviour<TRequest, TResponse>(IEnumerable<IValidator<TRe
         , CancellationToken cancellationToken
     )
     {
+        
         if (request is IQuery<TResponse>) return await next();
         
         var context = new ValidationContext<TRequest>(request);
@@ -29,7 +30,7 @@ public class ValidationBehaviour<TRequest, TResponse>(IEnumerable<IValidator<TRe
 
         if (failures.Count != 0)
             throw new CustomValidationException(failures);
-        
+
         return await next();
     }
 }

@@ -14,7 +14,7 @@ public class DeleteVehicleEndpoint : ICarterModule
     }
 
     private static async Task<IResult> Handler(
-        string plate, 
+        string plate,
         ISender sender,
         CancellationToken cancellationToken)
     {
