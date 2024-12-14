@@ -23,26 +23,28 @@ internal class ExceptionHandlerMiddleware(RequestDelegate next)
 
     private static async Task HandleExceptionAsync(HttpContext httpContext, Exception exception)
     {
-        string response;
+
+        (var httpStatusCode, IReadOnlyCollection<string> errors) = GetHttpStatusCodeAndErrors(exception);
         
         var serializerOptions = new JsonSerializerOptions
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase
         };
-        
+
         httpContext.Response.ContentType = "application/json";
 
-        if (exception is CustomValidationException validationException)
-        {
-            httpContext.Response.StatusCode = (int) HttpStatusCode.BadRequest;
-            response = JsonSerializer.Serialize(validationException.Errors, serializerOptions);
-        }
-        else
-        {
-            httpContext.Response.StatusCode = (int) HttpStatusCode.InternalServerError;
-            response = JsonSerializer.Serialize("The server encountered an unrecoverable error.", serializerOptions);
-        }
+        Console.WriteLine(exception);
         
+        httpContext.Response.StatusCode = (int) httpStatusCode;
+        var response = JsonSerializer.Serialize(errors, serializerOptions);
         await httpContext.Response.WriteAsync(response);
     }
+    
+    private static (HttpStatusCode httpStatusCode, IReadOnlyCollection<string>) GetHttpStatusCodeAndErrors(Exception exception) =>
+        exception switch
+        {
+            CustomValidationException validationException => (HttpStatusCode.BadRequest, validationException.Errors),
+            BadHttpRequestException badHttpRequestException => (HttpStatusCode.BadRequest, ["Invalid request body."]),
+            _ => (HttpStatusCode.InternalServerError, ["The server encountered an unrecoverable error."])
+        };
 }
