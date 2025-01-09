@@ -1,5 +1,4 @@
 ﻿using FluentResults;
-using MediatR;
 using ParkingFlow.WebApi.Common.Abstracts;
 using ParkingFlow.WebApi.Domain.Vehicles;
 
@@ -11,13 +10,13 @@ public class DeleteVehicleHandler(IVehicleRepository vehicleRepository, IUnitOfW
     public async Task<Result> Handle(DeleteVehicleCommand command,
         CancellationToken cancellationToken = default)
     {
-        var vehicle = await vehicleRepository.GetByPlate(command.Plate);
+        var vehicle = await vehicleRepository.GetByPlateAsync(command.Plate);
 
         if (vehicle is null) return Result.Fail(new Error($"Vehicle {command.Plate} not found"));
-        ;
 
         vehicleRepository.Remove(vehicle);
         await unitOfWork.SaveChangesAsync(cancellationToken);
+
         return Result.Ok();
     }
 }

@@ -12,8 +12,7 @@ public class CreateVehicleEndpointTest(FixtureWebApplicationFactory<Program> fac
     : IClassFixture<FixtureWebApplicationFactory<Program>>
 {
     private readonly HttpClient _httpClient = factory.CreateClient();
-
-
+    
     [Fact]
     public async Task Should_return_201_Created_when_post_vehicles_With_body_is_valid()
     {

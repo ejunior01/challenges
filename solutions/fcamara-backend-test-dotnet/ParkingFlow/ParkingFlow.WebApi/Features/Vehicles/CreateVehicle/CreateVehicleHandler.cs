@@ -1,5 +1,4 @@
 ﻿using FluentResults;
-using MediatR;
 using ParkingFlow.WebApi.Common.Abstracts;
 using ParkingFlow.WebApi.Domain.Vehicles;
 using Plate = ParkingFlow.WebApi.Domain.Vehicles.Plate;
@@ -12,7 +11,7 @@ public class CreateVehicleHandler(IVehicleRepository vehicleRepository, IUnitOfW
     public async Task<Result<Vehicle>> Handle(CreateVehicleCommand command,
         CancellationToken cancellationToken = default)
     {
-        var vehicleExistWithPlate = await vehicleRepository.ExistsVehicleByPlate(command.Plate);
+        var vehicleExistWithPlate = await vehicleRepository.ExistsVehicleByPlateAsync(command.Plate);
 
         if (vehicleExistWithPlate) return Result.Fail(new Error($"Vehicle {command.Plate} already exists"));
 

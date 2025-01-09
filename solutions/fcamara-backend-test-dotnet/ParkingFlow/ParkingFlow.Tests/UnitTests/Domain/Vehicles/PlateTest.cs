@@ -14,7 +14,7 @@ public class PlateTest
     {
         var plate = Plate.Create(value);
         plate.Should().NotBeNull();
-        plate.Value.Should().Be(value);
+        plate.Value.Should().Be(value.ToUpper());
     }
 
     [Theory]

@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using ParkingFlow.WebApi.Domain.Vehicles;
 
 namespace ParkingFlow.WebApi.Features.Vehicles.CreateVehicle;
 

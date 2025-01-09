@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using MediatR;
 using ParkingFlow.WebApi.Common.Abstracts;
-using ParkingFlow.WebApi.Common.Contracts;
+using ParkingFlow.WebApi.Exceptions;
 
 namespace ParkingFlow.WebApi.Common.Behaviors;
 
@@ -14,9 +14,8 @@ public class ValidationBehaviour<TRequest, TResponse>(IEnumerable<IValidator<TRe
         , CancellationToken cancellationToken
     )
     {
-        
         if (request is IQuery<TResponse>) return await next();
-        
+
         var context = new ValidationContext<TRequest>(request);
 
         var validationResults = await Task.WhenAll(

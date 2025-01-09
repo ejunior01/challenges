@@ -1,4 +1,6 @@
-﻿namespace ParkingFlow.WebApi.Domain.Vehicles;
+﻿using ParkingFlow.WebApi.Common.Contracts;
+
+namespace ParkingFlow.WebApi.Domain.Vehicles;
 
 public class Vehicle
 {
@@ -8,12 +10,12 @@ public class Vehicle
 
     public Vehicle(string brand, string model, string color, Plate plate, TypeVehicle type)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(brand, nameof(brand));
-        ArgumentOutOfRangeException.ThrowIfGreaterThan(2, brand.Length, nameof(brand));
-        ArgumentException.ThrowIfNullOrWhiteSpace(model, nameof(model));
-        ArgumentOutOfRangeException.ThrowIfGreaterThan(2, model.Length, nameof(model));
-        ArgumentException.ThrowIfNullOrWhiteSpace(color, nameof(color));
-        ArgumentOutOfRangeException.ThrowIfGreaterThan(2, color.Length, nameof(color));
+        Guard.IsNotNullOrWhiteSpace(brand, nameof(brand));
+        Guard.IsNotNullOrWhiteSpace(model, nameof(model));
+        Guard.IsNotNullOrWhiteSpace(color, nameof(color));
+        Guard.IsGreaterThanOrEqualTo(brand.Length, 2, nameof(brand));
+        Guard.IsGreaterThanOrEqualTo(model.Length, 2, nameof(model));
+        Guard.IsGreaterThanOrEqualTo(color.Length, 2, nameof(color));
 
         Id = Guid.NewGuid();
         Brand = brand;

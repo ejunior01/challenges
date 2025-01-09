@@ -23,7 +23,19 @@ builder.Services.AddMediatR((cfg) =>
 
 builder.Services.AddValidatorsFromAssembly(assembly);
 builder.Services.AddCarter();
-builder.Services.AddDbContext<ParkingFlowDbContext>((cfg) => { cfg.UseInMemoryDatabase(Guid.NewGuid().ToString()); });
+
+
+/*builder.Services.AddDbContext<ParkingFlowDbContext>((cfg) =>
+{
+    cfg.UseSqlite($"Data Source=./app.db");
+});*/
+
+builder.Services.AddDbContext<ParkingFlowDbContext>((cfg) =>
+{
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    cfg.UseNpgsql(connectionString);
+});
+
 
 builder.Services.AddScoped<IUnitOfWork>(serviceProvider => serviceProvider.GetRequiredService<ParkingFlowDbContext>());
 builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();

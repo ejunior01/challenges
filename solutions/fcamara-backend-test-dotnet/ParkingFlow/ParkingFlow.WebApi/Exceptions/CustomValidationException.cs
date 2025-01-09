@@ -1,6 +1,6 @@
 ﻿using FluentValidation.Results;
 
-namespace ParkingFlow.WebApi.Common.Contracts;
+namespace ParkingFlow.WebApi.Exceptions;
 
 public sealed class CustomValidationException : Exception
 {

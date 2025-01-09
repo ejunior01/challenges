@@ -6,23 +6,26 @@ namespace ParkingFlow.WebApi.Persistence.Repositories;
 
 public class VehicleRepository(ParkingFlowDbContext context) : IVehicleRepository
 {
+    private DbSet<Vehicle> _context = context.Set<Vehicle>();
+
     public void Add(Vehicle vehicle)
     {
-        context.Set<Vehicle>().Add(vehicle);
+        _context.Add(vehicle);
     }
 
     public void Remove(Vehicle vehicle)
     {
-        context.Set<Vehicle>().Remove(vehicle);
+        _context.Remove(vehicle);
     }
 
-    public Task<Vehicle?> GetByPlate(string plate)
+    public async Task<Vehicle?> GetByPlateAsync(string plate)
     {
-        return context.Set<Vehicle>().FirstOrDefaultAsync((v) => v.Plate.Value.Equals(plate));
+        Console.WriteLine(_context.Count());
+        return await _context.FirstOrDefaultAsync((v) => v.Plate.Value.Equals(plate));
     }
 
-    public Task<bool> ExistsVehicleByPlate(string plate)
+    public async Task<bool> ExistsVehicleByPlateAsync(string plate)
     {
-        return context.Set<Vehicle>().AnyAsync((v) => v.Plate.Value.Equals(plate));
+        return await _context.AnyAsync((v) => v.Plate.Value.Equals(plate));
     }
 }

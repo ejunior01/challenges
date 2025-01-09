@@ -14,7 +14,7 @@ public class CreateVehicleHandlerTest
         var unitOfWork = new Mock<IUnitOfWork>();
         var vehicleRepository = new Mock<IVehicleRepository>();
 
-        vehicleRepository.Setup((v) => v.ExistsVehicleByPlate(It.IsAny<string>())).ReturnsAsync(false);
+        vehicleRepository.Setup((v) => v.ExistsVehicleByPlateAsync(It.IsAny<string>())).ReturnsAsync(false);
 
         var command = new CreateVehicleCommand("Fiat", "Uno", "Preta", "AAA-1515", TypeVehicle.Car);
         var handler = new CreateVehicleHandler(vehicleRepository.Object, unitOfWork.Object);
@@ -31,7 +31,7 @@ public class CreateVehicleHandlerTest
         var unitOfWork = new Mock<IUnitOfWork>();
         var vehicleRepository = new Mock<IVehicleRepository>();
 
-        vehicleRepository.Setup((v) => v.ExistsVehicleByPlate(It.IsAny<string>())).ReturnsAsync(true);
+        vehicleRepository.Setup((v) => v.ExistsVehicleByPlateAsync(It.IsAny<string>())).ReturnsAsync(true);
 
         var command = new CreateVehicleCommand("Fiat", "Uno", "Preta", "AAA-1515", TypeVehicle.Car);
         var handler = new CreateVehicleHandler(vehicleRepository.Object, unitOfWork.Object);

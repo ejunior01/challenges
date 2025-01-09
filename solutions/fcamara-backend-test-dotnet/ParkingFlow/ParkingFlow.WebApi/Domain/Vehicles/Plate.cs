@@ -16,12 +16,10 @@ public partial class Plate
         if (string.IsNullOrWhiteSpace(value))
             throw new InvalidOperationException();
 
-        var match = PlateRegex().Match(value);
-
-        if (!match.Success)
+        if (!PlateRegex().IsMatch(value))
             throw new InvalidOperationException();
 
-        return new Plate(value);
+        return new Plate(value.ToUpper());
     }
 
     [GeneratedRegex(@"(^[a-zA-z]{3}-\d{4}$)|(^[a-zA-z]{3}\d{1}[a-zA-z]{1}\d{2}$)")]

@@ -21,8 +21,6 @@ public class DeleteVehicleEndpoint : ICarterModule
         var command = new DeleteVehicleCommand(plate);
         var result = await sender.Send(command, cancellationToken);
 
-        if (result.IsFailed) return TypedResults.NotFound(result.Errors);
-
-        return TypedResults.Ok();
+        return result.IsFailed ? TypedResults.NotFound(result.Errors) : TypedResults.Ok();
     }
 }

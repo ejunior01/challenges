@@ -1,5 +1,4 @@
 ﻿using FluentResults;
-using MediatR;
 using ParkingFlow.WebApi.Common.Abstracts;
 using ParkingFlow.WebApi.Domain.Vehicles;
 

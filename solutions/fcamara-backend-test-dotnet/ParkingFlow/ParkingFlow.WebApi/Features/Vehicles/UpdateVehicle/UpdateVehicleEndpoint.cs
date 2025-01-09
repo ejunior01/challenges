@@ -2,7 +2,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using ParkingFlow.WebApi.Common.Contracts;
-using ParkingFlow.WebApi.Domain.Vehicles;
 
 namespace ParkingFlow.WebApi.Features.Vehicles.UpdateVehicle;
 
@@ -26,7 +25,8 @@ public class UpdateVehicleEndpoint : ICarterModule
         if (!plate.Equals(request.Plate)) return TypedResults.UnprocessableEntity("Invalid plate");
 
         var command =
-            new UpdateVehicleCommand(request.Brand, request.Model, request.Color, request.Plate, request.Type);
+            new UpdateVehicleCommand(request.Brand, request.Model, request.Color, plate, request.Type);
+        
         var result = await sender.Send(command, cancellationToken);
 
         if (result.IsFailed) return TypedResults.NotFound(result.Errors);

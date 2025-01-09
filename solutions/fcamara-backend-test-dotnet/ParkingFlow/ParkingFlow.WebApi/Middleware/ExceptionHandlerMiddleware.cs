@@ -1,9 +1,6 @@
 ﻿using System.Net;
 using System.Text.Json;
-using FluentResults;
-using FluentValidation;
-using ParkingFlow.WebApi.Common.Contracts;
-using ParkingFlow.WebApi.Common.Extensions;
+using ParkingFlow.WebApi.Exceptions;
 
 namespace ParkingFlow.WebApi.Middleware;
 
@@ -23,9 +20,9 @@ internal class ExceptionHandlerMiddleware(RequestDelegate next)
 
     private static async Task HandleExceptionAsync(HttpContext httpContext, Exception exception)
     {
+        Console.WriteLine(exception);
+        var (httpStatusCode, errors) = GetHttpStatusCodeAndErrors(exception);
 
-        (var httpStatusCode, IReadOnlyCollection<string> errors) = GetHttpStatusCodeAndErrors(exception);
-        
         var serializerOptions = new JsonSerializerOptions
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase
@@ -33,18 +30,20 @@ internal class ExceptionHandlerMiddleware(RequestDelegate next)
 
         httpContext.Response.ContentType = "application/json";
 
-        Console.WriteLine(exception);
-        
         httpContext.Response.StatusCode = (int) httpStatusCode;
         var response = JsonSerializer.Serialize(errors, serializerOptions);
         await httpContext.Response.WriteAsync(response);
     }
-    
-    private static (HttpStatusCode httpStatusCode, IReadOnlyCollection<string>) GetHttpStatusCodeAndErrors(Exception exception) =>
-        exception switch
+
+    private static (HttpStatusCode httpStatusCode, IReadOnlyCollection<string>) GetHttpStatusCodeAndErrors(
+        Exception exception)
+    {
+        return exception switch
         {
             CustomValidationException validationException => (HttpStatusCode.BadRequest, validationException.Errors),
             BadHttpRequestException badHttpRequestException => (HttpStatusCode.BadRequest, ["Invalid request body."]),
-            _ => (HttpStatusCode.InternalServerError, ["The server encountered an unrecoverable error."])
+            _ => (HttpStatusCode.InternalServerError, [exception.Message])
+            /*_ => (HttpStatusCode.InternalServerError, ["The server encountered an unrecoverable error."])*/
         };
+    }
 }
