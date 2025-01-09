@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingFlow.Tests", "ParkingFlow.Tests\ParkingFlow.Tests.csproj", "{022DC0BF-F720-4AA7-816F-1B61E84F8587}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingFlow.WebApi", "ParkingFlow.WebApi\ParkingFlow.WebApi.csproj", "{6054305B-FEDA-4733-BC96-CC22322B33C7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{022DC0BF-F720-4AA7-816F-1B61E84F8587}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{022DC0BF-F720-4AA7-816F-1B61E84F8587}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{022DC0BF-F720-4AA7-816F-1B61E84F8587}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{022DC0BF-F720-4AA7-816F-1B61E84F8587}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6054305B-FEDA-4733-BC96-CC22322B33C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6054305B-FEDA-4733-BC96-CC22322B33C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6054305B-FEDA-4733-BC96-CC22322B33C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6054305B-FEDA-4733-BC96-CC22322B33C7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

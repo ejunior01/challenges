@@ -1,0 +1,6 @@
+@ParkingFlow.WebApi_HostAddress = http://localhost:5262
+
+GET {{ParkingFlow.WebApi_HostAddress}}/
+Accept: application/json
+
+###
