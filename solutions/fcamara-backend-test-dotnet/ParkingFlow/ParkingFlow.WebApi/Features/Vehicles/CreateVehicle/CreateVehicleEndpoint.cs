@@ -19,7 +19,7 @@ public class CreateVehicleEndpoint : ICarterModule
         var result = await sender.Send(command, cancellationToken);
 
         return result.IsFailed
-            ? TypedResults.BadRequest(result.Errors)
+            ? TypedResults.Conflict(result.Errors)
             : TypedResults.Created($"api/v1/{ApiRoutes.Vehicles.Get}/{result.Value.Plate}", result.Value);
     }
 }

@@ -29,6 +29,24 @@ public class CreateVehicleEndpointTest(FixtureWebApplicationFactory<Program> fac
     }
     
     [Fact]
+    public async Task Should_return_409_Conflict_when_post_create_vehicle_with_exists_plate()
+    {
+       
+        var command = new CreateVehicleCommand("Fiat",
+            "Uno",
+            "Preta",
+            "AAA-1515",
+            TypeVehicle.Car);
+
+        await _httpClient.PostAsJsonAsync($"api/v1/{ApiRoutes.Vehicles.Create}", command);
+        
+        var response = await _httpClient.PostAsJsonAsync($"api/v1/{ApiRoutes.Vehicles.Create}", command);
+
+        response.Should().HaveClientError();
+        response.Should().HaveStatusCode(HttpStatusCode.Conflict);
+    }
+    
+    [Fact]
     public async Task Should_return_400_BadRequest_when_post_vehicles_With_body_is_invalid()
     {
        
