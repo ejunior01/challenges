@@ -34,7 +34,7 @@ public class GetVehicleByPlateHandlerTests
     }
 
     [Fact]
-    public async Task Handle_ShouldReturnVehicle_WhenPlateExists()
+    public async Task Should_result_sucess_When_handler_vehicle_exists_plate()
     {
         var query = new GetVehicleByPlateQuery("AAA-1515");
 
@@ -43,9 +43,8 @@ public class GetVehicleByPlateHandlerTests
         result.IsSuccess.Should().BeTrue();
         result.Value.Plate.Value.Should().Be("AAA-1515");
     }
-
     [Fact]
-    public async Task Handle_ShouldReturnFail_WhenPlateDoesNotExist()
+    public async Task Should_result_fail_When_handler_vehicle_not_exists_plate()
     {
         var query = new GetVehicleByPlateQuery("AAA1B24");
 

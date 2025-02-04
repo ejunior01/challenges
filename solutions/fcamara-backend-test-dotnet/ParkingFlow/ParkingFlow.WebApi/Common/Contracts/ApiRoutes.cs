@@ -8,5 +8,6 @@ public static class ApiRoutes
         public const string Update = "vehicles/{plate}";
         public const string Delete = "vehicles/{plate}";
         public const string Get = "vehicles";
+        public const string GetById = "vehicles/{plate}";
     }
 }
