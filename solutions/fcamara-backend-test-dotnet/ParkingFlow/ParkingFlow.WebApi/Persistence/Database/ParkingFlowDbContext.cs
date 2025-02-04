@@ -5,7 +5,7 @@ using ParkingFlow.WebApi.Domain.Vehicles;
 
 namespace ParkingFlow.WebApi.Persistence.Database;
 
-public class ParkingFlowDbContext(DbContextOptions<ParkingFlowDbContext> options) :
+public class ParkingFlowDbContext(DbContextOptions<ParkingFlowDbContext> options) : 
     DbContext(options), IUnitOfWork
 {
     public DbSet<Vehicle> Vehicles { get; set; }
@@ -13,5 +13,6 @@ public class ParkingFlowDbContext(DbContextOptions<ParkingFlowDbContext> options
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        base.OnModelCreating(modelBuilder);
     }
 }
