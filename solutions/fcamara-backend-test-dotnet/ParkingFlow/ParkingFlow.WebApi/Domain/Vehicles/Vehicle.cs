@@ -3,9 +3,9 @@ using ParkingFlow.WebApi.Common.Contracts;
 
 namespace ParkingFlow.WebApi.Domain.Vehicles;
 
-public class Vehicle: Entity
+public class Vehicle : Entity
 {
-    private Vehicle() {}
+    private Vehicle() { }
 
     public Vehicle(string brand, string model, string color, Plate plate, TypeVehicle type)
     {

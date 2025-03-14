@@ -14,12 +14,12 @@ public class Address
         Postcode = postcode;
     }
 
-    public  string Street { get; private set; }
-    public  string Number { get; private set; }
-    public  string District { get; private set; }
-    public  string City { get; private set; }
-    public  string State { get; private set; }
-    public  string Postcode { get; private set; }
+    public string Street { get; private set; }
+    public string Number { get; private set; }
+    public string District { get; private set; }
+    public string City { get; private set; }
+    public string State { get; private set; }
+    public string Postcode { get; private set; }
 
     public static Address Create(string street, string number, string district, string city, string state, string postcode)
     {
@@ -28,7 +28,7 @@ public class Address
         Guard.IsNotNullOrWhiteSpace(district, nameof(district));
         Guard.IsNotNullOrWhiteSpace(city, nameof(city));
         Guard.IsNotNullOrWhiteSpace(state, nameof(state));
-        return new Address(street,number,district,city,state,postcode);
+        return new Address(street, number, district, city, state, postcode);
     }
-    
+
 }

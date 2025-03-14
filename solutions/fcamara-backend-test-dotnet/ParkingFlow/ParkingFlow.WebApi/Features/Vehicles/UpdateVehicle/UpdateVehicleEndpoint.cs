@@ -26,7 +26,7 @@ public class UpdateVehicleEndpoint : ICarterModule
 
         var command =
             new UpdateVehicleCommand(request.Brand, request.Model, request.Color, plate, request.Type);
-        
+
         var result = await sender.Send(command, cancellationToken);
 
         if (result.IsFailed) return TypedResults.NotFound(result.Errors);

@@ -1,7 +1,6 @@
 ﻿using Carter;
 using MediatR;
 using ParkingFlow.WebApi.Common.Contracts;
-using ParkingFlow.WebApi.Domain.Vehicles;
 using ParkingFlow.WebApi.Features.Vehicles.GetVehicleByPlate;
 
 namespace ParkingFlow.WebApi.Features.Vehicles.DeleteVehicle;
