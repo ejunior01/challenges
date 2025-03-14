@@ -5,7 +5,10 @@
 
 ## Introdução
 
-Minhas soluções para os desafios de back-end do repositório [CollabCodeTech - backend-challenges](https://github.com/CollabCodeTech/backend-challenges). Desenvolvi cada uma delas como parte do meu aprendizado e para me preparar para processos seletivos de vagas como desenvolvedor back-end.
+Minhas soluções para os desafios de back-end dos repositórios abaixo:
+- [CollabCodeTech - backend-challenges](https://github.com/CollabCodeTech/backend-challenges).
+
+Desenvolvi cada uma delas como parte do meu aprendizado e para me preparar para processos seletivos de vagas como desenvolvedor back-end.
 
 
 | Status | Company | Stack | Test | Solution
