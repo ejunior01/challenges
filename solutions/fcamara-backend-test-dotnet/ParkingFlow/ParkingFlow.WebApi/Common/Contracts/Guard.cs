@@ -11,4 +11,9 @@ public static class Guard
     {
         ArgumentOutOfRangeException.ThrowIfLessThan(value, minimum);
     }
+
+    public static void IsGreaterThanOrEqualTo(double value, double minimum, string name)
+    {
+        ArgumentOutOfRangeException.ThrowIfLessThan(value, minimum);
+    }
 }
