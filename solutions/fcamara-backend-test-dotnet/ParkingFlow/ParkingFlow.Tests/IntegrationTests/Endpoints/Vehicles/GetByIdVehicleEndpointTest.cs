@@ -9,37 +9,40 @@ using Xunit.Abstractions;
 
 namespace ParkingFlow.Tests.IntegrationTests.Endpoints.Vehicles;
 
-public class DeleteVehicleEndpointTest(FixtureWebApplicationFactory<Program> factory, ITestOutputHelper testOutputHelper)
+public class GetByIdVehicleEndpointTest(
+    FixtureWebApplicationFactory<Program> factory,
+    ITestOutputHelper testOutputHelper)
     : IClassFixture<FixtureWebApplicationFactory<Program>>
 {
 
     private readonly HttpClient _httpClient = factory.CreateClient();
 
     [Fact]
-    public async Task Should_return_200_Ok_when_delete_vehicles_With_param_is_valid()
+    public async Task Should_return_200_Ok_when_get_vehicle_With_plate_exist()
     {
 
+        var plate = "AAA-1515";
         var command = new CreateVehicleCommand("Fiat",
             "Uno",
             "Preta",
-            "AAA-1515",
+            plate,
             TypeVehicle.Car);
 
         await _httpClient.PostAsJsonAsync($"api/v1/{ApiRoutes.Vehicles.Create}", command);
 
-        var response = await _httpClient.DeleteAsync($"api/v1/vehicles/{command.Plate}");
+        var response = await _httpClient.GetAsync($"api/v1/vehicles/{plate}");
 
         response.Should().BeSuccessful();
         response.Should().HaveStatusCode(HttpStatusCode.OK);
     }
 
     [Fact]
-    public async Task Should_return_404_NotFound_when_delete_vehicles_With_not_existing_vehicle()
+    public async Task Should_return_404_NotFound_when_get_vehicle_With_not_existing_plate()
     {
 
-        const string plate = "AAA-1515";
+        const string plate = "AAA-1516";
 
-        var response = await _httpClient.DeleteAsync($"api/v1/vehicles/{plate}");
+        var response = await _httpClient.GetAsync($"api/v1/vehicles/{plate}");
 
         response.Should().HaveClientError();
         response.Should().HaveStatusCode(HttpStatusCode.NotFound);

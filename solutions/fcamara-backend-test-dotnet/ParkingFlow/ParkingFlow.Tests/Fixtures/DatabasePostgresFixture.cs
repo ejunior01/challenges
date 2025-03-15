@@ -2,7 +2,7 @@
 
 namespace ParkingFlow.Tests.Fixtures;
 
-public class DatabasePostgresFixture: IAsyncLifetime
+public class DatabasePostgresFixture : IAsyncLifetime
 {
     private PostgreSqlContainer _postgreSqlContainer { get; set; }
     public string ConnectionString => _postgreSqlContainer.GetConnectionString();

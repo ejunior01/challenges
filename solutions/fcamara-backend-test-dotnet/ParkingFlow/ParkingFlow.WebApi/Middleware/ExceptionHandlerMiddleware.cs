@@ -1,6 +1,6 @@
-﻿using System.Net;
+﻿using ParkingFlow.WebApi.Exceptions;
+using System.Net;
 using System.Text.Json;
-using ParkingFlow.WebApi.Exceptions;
 
 namespace ParkingFlow.WebApi.Middleware;
 
@@ -30,7 +30,7 @@ internal class ExceptionHandlerMiddleware(RequestDelegate next)
 
         httpContext.Response.ContentType = "application/json";
 
-        httpContext.Response.StatusCode = (int) httpStatusCode;
+        httpContext.Response.StatusCode = (int)httpStatusCode;
         var response = JsonSerializer.Serialize(errors, serializerOptions);
         await httpContext.Response.WriteAsync(response);
     }

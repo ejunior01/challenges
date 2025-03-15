@@ -1,5 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35728.132
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingFlow.Tests", "ParkingFlow.Tests\ParkingFlow.Tests.csproj", "{022DC0BF-F720-4AA7-816F-1B61E84F8587}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingFlow.WebApi", "ParkingFlow.WebApi\ParkingFlow.WebApi.csproj", "{6054305B-FEDA-4733-BC96-CC22322B33C7}"
@@ -18,5 +21,8 @@ Global
 		{6054305B-FEDA-4733-BC96-CC22322B33C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6054305B-FEDA-4733-BC96-CC22322B33C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6054305B-FEDA-4733-BC96-CC22322B33C7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal
