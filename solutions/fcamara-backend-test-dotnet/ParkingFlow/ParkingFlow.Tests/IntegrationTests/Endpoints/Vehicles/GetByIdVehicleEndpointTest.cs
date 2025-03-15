@@ -1,10 +1,10 @@
-﻿using System.Net;
-using System.Net.Http.Json;
-using FluentAssertions;
+﻿using FluentAssertions;
 using ParkingFlow.Tests.Fixtures;
 using ParkingFlow.WebApi.Common.Contracts;
 using ParkingFlow.WebApi.Domain.Vehicles;
 using ParkingFlow.WebApi.Features.Vehicles.CreateVehicle;
+using System.Net;
+using System.Net.Http.Json;
 using Xunit.Abstractions;
 
 namespace ParkingFlow.Tests.IntegrationTests.Endpoints.Vehicles;
@@ -31,21 +31,21 @@ public class GetByIdVehicleEndpointTest(
         await _httpClient.PostAsJsonAsync($"api/v1/{ApiRoutes.Vehicles.Create}", command);
 
         var response = await _httpClient.GetAsync($"api/v1/vehicles/{plate}");
-        
+
         response.Should().BeSuccessful();
         response.Should().HaveStatusCode(HttpStatusCode.OK);
     }
-    
+
     [Fact]
     public async Task Should_return_404_NotFound_when_get_vehicle_With_not_existing_plate()
     {
-        
+
         const string plate = "AAA-1516";
-    
+
         var response = await _httpClient.GetAsync($"api/v1/vehicles/{plate}");
-        
+
         response.Should().HaveClientError();
         response.Should().HaveStatusCode(HttpStatusCode.NotFound);
     }
-    
+
 }

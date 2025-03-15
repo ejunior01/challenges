@@ -1,10 +1,10 @@
-﻿using System.Net;
-using System.Net.Http.Json;
-using FluentAssertions;
+﻿using FluentAssertions;
 using ParkingFlow.Tests.Fixtures;
 using ParkingFlow.WebApi.Common.Contracts;
 using ParkingFlow.WebApi.Domain.Vehicles;
 using ParkingFlow.WebApi.Features.Vehicles.CreateVehicle;
+using System.Net;
+using System.Net.Http.Json;
 
 namespace ParkingFlow.Tests.IntegrationTests.Endpoints.Vehicles;
 
@@ -12,7 +12,7 @@ public class CreateVehicleEndpointTest(FixtureWebApplicationFactory<Program> fac
     : IClassFixture<FixtureWebApplicationFactory<Program>>
 {
     private readonly HttpClient _httpClient = factory.CreateClient();
-    
+
     [Fact]
     public async Task Should_return_201_Created_when_post_vehicles_With_body_is_valid()
     {
@@ -27,11 +27,11 @@ public class CreateVehicleEndpointTest(FixtureWebApplicationFactory<Program> fac
         response.Should().BeSuccessful();
         response.Should().HaveStatusCode(HttpStatusCode.Created);
     }
-    
+
     [Fact]
     public async Task Should_return_409_Conflict_when_post_create_vehicle_with_exists_plate()
     {
-       
+
         var command = new CreateVehicleCommand("Fiat",
             "Uno",
             "Preta",
@@ -39,17 +39,17 @@ public class CreateVehicleEndpointTest(FixtureWebApplicationFactory<Program> fac
             TypeVehicle.Car);
 
         await _httpClient.PostAsJsonAsync($"api/v1/{ApiRoutes.Vehicles.Create}", command);
-        
+
         var response = await _httpClient.PostAsJsonAsync($"api/v1/{ApiRoutes.Vehicles.Create}", command);
 
         response.Should().HaveClientError();
         response.Should().HaveStatusCode(HttpStatusCode.Conflict);
     }
-    
+
     [Fact]
     public async Task Should_return_400_BadRequest_when_post_vehicles_With_body_is_invalid()
     {
-       
+
         var response = await _httpClient.PostAsJsonAsync($"api/v1/{ApiRoutes.Vehicles.Create}", "");
         response.Should().HaveStatusCode(HttpStatusCode.BadRequest);
     }

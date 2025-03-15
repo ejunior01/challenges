@@ -1,9 +1,8 @@
 ﻿using Carter;
 using MediatR;
 using ParkingFlow.WebApi.Common.Contracts;
-using ParkingFlow.WebApi.Features.Vehicles.GetVehicleByPlate;
 
-namespace ParkingFlow.WebApi.Features.Vehicles.DeleteVehicle;
+namespace ParkingFlow.WebApi.Features.Vehicles.GetVehicleByPlate;
 
 public class GetVehicleByPlateEndpoint : ICarterModule
 {
