@@ -2,7 +2,7 @@
 using MediatR;
 using ParkingFlow.WebApi.Common.Contracts;
 
-namespace ParkingFlow.WebApi.Features.Vehicles.CreateVehicle;
+namespace ParkingFlow.WebApi.Features.Vehicles.Commands.Create;
 
 public class CreateVehicleEndpoint : ICarterModule
 {

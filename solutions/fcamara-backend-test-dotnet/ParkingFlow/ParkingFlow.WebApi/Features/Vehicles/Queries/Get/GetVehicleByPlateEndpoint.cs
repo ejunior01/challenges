@@ -2,8 +2,7 @@
 using MediatR;
 using ParkingFlow.WebApi.Common.Contracts;
 
-namespace ParkingFlow.WebApi.Features.Vehicles.GetVehicleByPlate;
-
+namespace ParkingFlow.WebApi.Features.Vehicles.Queries.Get;
 public class GetVehicleByPlateEndpoint : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)

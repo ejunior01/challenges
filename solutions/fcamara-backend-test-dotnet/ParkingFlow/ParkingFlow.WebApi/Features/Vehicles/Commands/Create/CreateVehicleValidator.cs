@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace ParkingFlow.WebApi.Features.Vehicles.CreateVehicle;
+namespace ParkingFlow.WebApi.Features.Vehicles.Commands.Create;
 
 public class CreateVehicleValidator : AbstractValidator<CreateVehicleCommand>
 {

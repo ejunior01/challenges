@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace ParkingFlow.WebApi.Features.Vehicles.DeleteVehicle;
+namespace ParkingFlow.WebApi.Features.Vehicles.Commands.Delete;
 
 public class DeleteVehicleValidator : AbstractValidator<DeleteVehicleCommand>
 {

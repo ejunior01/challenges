@@ -2,7 +2,7 @@
 using ParkingFlow.WebApi.Common.Abstracts;
 using ParkingFlow.WebApi.Domain.Vehicles;
 
-namespace ParkingFlow.WebApi.Features.Vehicles.DeleteVehicle;
+namespace ParkingFlow.WebApi.Features.Vehicles.Commands.Delete;
 
 public class DeleteVehicleHandler(IVehicleRepository vehicleRepository, IUnitOfWork unitOfWork)
     : ICommandHandler<DeleteVehicleCommand, Result>

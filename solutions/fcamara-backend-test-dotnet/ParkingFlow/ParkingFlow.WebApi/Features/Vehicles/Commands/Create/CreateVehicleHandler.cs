@@ -3,7 +3,7 @@ using ParkingFlow.WebApi.Common.Abstracts;
 using ParkingFlow.WebApi.Domain.Vehicles;
 using Plate = ParkingFlow.WebApi.Domain.Vehicles.Plate;
 
-namespace ParkingFlow.WebApi.Features.Vehicles.CreateVehicle;
+namespace ParkingFlow.WebApi.Features.Vehicles.Commands.Create;
 
 public class CreateVehicleHandler(IVehicleRepository vehicleRepository, IUnitOfWork unitOfWork)
     : ICommandHandler<CreateVehicleCommand, Result<Vehicle>>

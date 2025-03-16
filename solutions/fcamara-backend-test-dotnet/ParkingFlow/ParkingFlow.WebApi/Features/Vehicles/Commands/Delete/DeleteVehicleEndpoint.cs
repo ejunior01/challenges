@@ -2,7 +2,7 @@
 using MediatR;
 using ParkingFlow.WebApi.Common.Contracts;
 
-namespace ParkingFlow.WebApi.Features.Vehicles.DeleteVehicle;
+namespace ParkingFlow.WebApi.Features.Vehicles.Commands.Delete;
 
 public class DeleteVehicleEndpoint : ICarterModule
 {
