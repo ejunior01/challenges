@@ -2,7 +2,7 @@ using ParkingFlow.WebApi.Common.Contracts;
 using ParkingFlow.WebApi.Domain.Parkings;
 using ParkingFlow.WebApi.Domain.Vehicles;
 
-namespace ParkingFlow.WebApi.Domain.VehicleParkeds;
+namespace ParkingFlow.WebApi.Domain.Vehicles;
 
 public class VehicleParked
 {
