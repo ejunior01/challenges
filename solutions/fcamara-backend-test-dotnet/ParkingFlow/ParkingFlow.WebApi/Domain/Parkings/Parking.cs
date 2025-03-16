@@ -12,6 +12,7 @@ public class Parking
         Guard.IsGreaterThanOrEqualTo(capacityCar, 1, nameof(capacityCar));
         Guard.IsGreaterThanOrEqualTo(capacityMotorcycle, 1, nameof(capacityMotorcycle));
 
+        Id = Guid.NewGuid();
         Name = name;
         CNPJ = cnpj;
         Address = address;
@@ -20,7 +21,7 @@ public class Parking
         CapacityMotorcycle = capacityMotorcycle;
     }
 
-
+    public Guid Id { get; private set; }
     public string Name { get; private set; }
     public CNPJ CNPJ { get; private set; }
     public Address Address { get; private set; }
