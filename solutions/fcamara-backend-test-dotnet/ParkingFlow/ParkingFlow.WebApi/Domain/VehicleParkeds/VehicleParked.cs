@@ -31,10 +31,25 @@ public class VehicleParked
         
         if(totalAmout == amount) {
             IsPaid = true;
+            Amount = amount;
+            UpdatedOnUt = DateTimeOffset.UtcNow;
         } else {
             throw new InvalidOperationException("O valor de pagamento é diferente do valor devido.");
         }
 
     }
 
+    public void Exit() {
+        
+        if(IsExit) {
+            throw new InvalidOperationException("Veículo já saiu do estacionamento.");
+        }
+
+        if(!IsPaid) {
+            throw new InvalidOperationException("Veículo não pagou o estacionamento.");
+        }
+
+        IsExit = true;
+        ExitdOnUtc = DateTimeOffset.UtcNow;
+    }
 }
