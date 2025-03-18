@@ -12,7 +12,7 @@ public class CreateParkingHandler(IParkingRepository parkingRepository, IUnitOfW
     {
         var parkingExistWithName = await parkingRepository.ExistsParkingByNameAsync(command.Name);
 
-        if (parkingExistWithName) return Result.Fail(new Error($"Parking {command.Name} already exists"));
+        if (parkingExistWithName) return Result.Fail(new Error($"Parkings {command.Name} already exists"));
 
         var address = Address.Create(command.Street, command.Number, command.District, command.City, command.State,
             command.Postcode);
