@@ -2,14 +2,13 @@
 using ParkingFlow.Tests.Fixtures;
 using ParkingFlow.WebApi.Common.Contracts;
 using ParkingFlow.WebApi.Domain.Vehicles;
-using ParkingFlow.WebApi.Features.Vehicles.CreateVehicle;
 using System.Net;
 using System.Net.Http.Json;
-using Xunit.Abstractions;
+using ParkingFlow.WebApi.Features.Vehicles.Commands.Create;
 
 namespace ParkingFlow.Tests.IntegrationTests.Endpoints.Vehicles;
 
-public class DeleteVehicleEndpointTest(FixtureWebApplicationFactory<Program> factory, ITestOutputHelper testOutputHelper)
+public class DeleteVehicleEndpointTest(FixtureWebApplicationFactory<Program> factory)
     : IClassFixture<FixtureWebApplicationFactory<Program>>
 {
 

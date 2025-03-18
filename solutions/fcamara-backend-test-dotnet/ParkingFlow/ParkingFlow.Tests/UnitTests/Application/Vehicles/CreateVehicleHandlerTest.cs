@@ -2,7 +2,7 @@
 using Moq;
 using ParkingFlow.WebApi.Common.Abstracts;
 using ParkingFlow.WebApi.Domain.Vehicles;
-using ParkingFlow.WebApi.Features.Vehicles.CreateVehicle;
+using ParkingFlow.WebApi.Features.Vehicles.Commands.Create;
 
 namespace ParkingFlow.Tests.UnitTests.Application.Vehicles;
 

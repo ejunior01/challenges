@@ -2,7 +2,7 @@
 using Moq;
 using ParkingFlow.WebApi.Common.Abstracts;
 using ParkingFlow.WebApi.Domain.Vehicles;
-using ParkingFlow.WebApi.Features.Vehicles.DeleteVehicle;
+using ParkingFlow.WebApi.Features.Vehicles.Commands.Delete;
 
 namespace ParkingFlow.Tests.UnitTests.Application.Vehicles;
 

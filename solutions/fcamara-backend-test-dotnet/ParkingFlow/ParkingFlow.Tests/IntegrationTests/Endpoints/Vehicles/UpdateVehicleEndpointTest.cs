@@ -2,9 +2,9 @@
 using ParkingFlow.Tests.Fixtures;
 using ParkingFlow.WebApi.Common.Contracts;
 using ParkingFlow.WebApi.Domain.Vehicles;
-using ParkingFlow.WebApi.Features.Vehicles.UpdateVehicle;
 using System.Net;
 using System.Net.Http.Json;
+using ParkingFlow.WebApi.Features.Vehicles.Commands.Update;
 
 namespace ParkingFlow.Tests.IntegrationTests.Endpoints.Vehicles;
 

@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
+using ParkingFlow.WebApi.Features.Vehicles.Commands.Update;
 
-namespace ParkingFlow.WebApi.Features.Vehicles.UpdateVehicle;
+namespace ParkingFlow.WebApi.Features.Vehicles.Commands.Update;
 
 public class UpdateVehicleValidator : AbstractValidator<UpdateVehicleCommand>
 {

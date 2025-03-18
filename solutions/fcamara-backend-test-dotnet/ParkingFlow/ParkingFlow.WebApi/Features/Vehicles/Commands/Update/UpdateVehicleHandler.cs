@@ -1,8 +1,9 @@
 ﻿using FluentResults;
 using ParkingFlow.WebApi.Common.Abstracts;
 using ParkingFlow.WebApi.Domain.Vehicles;
+using ParkingFlow.WebApi.Features.Vehicles.Commands.Update;
 
-namespace ParkingFlow.WebApi.Features.Vehicles.UpdateVehicle;
+namespace ParkingFlow.WebApi.Features.Vehicles.Commands.Update;
 
 public class UpdateVehicleHandler(IVehicleRepository vehicleRepository, IUnitOfWork unitOfWork)
     : ICommandHandler<UpdateVehicleCommand, Result<Vehicle>>

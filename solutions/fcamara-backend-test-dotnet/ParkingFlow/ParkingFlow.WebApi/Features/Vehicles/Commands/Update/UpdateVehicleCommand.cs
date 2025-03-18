@@ -2,7 +2,7 @@
 using ParkingFlow.WebApi.Common.Abstracts;
 using ParkingFlow.WebApi.Domain.Vehicles;
 
-namespace ParkingFlow.WebApi.Features.Vehicles.UpdateVehicle;
+namespace ParkingFlow.WebApi.Features.Vehicles.Commands.Update;
 
 public record UpdateVehicleCommand(
     string Brand,
