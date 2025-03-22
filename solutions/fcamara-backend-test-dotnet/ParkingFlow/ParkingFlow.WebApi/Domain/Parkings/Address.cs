@@ -4,7 +4,7 @@ namespace ParkingFlow.WebApi.Domain.Parkings;
 
 public class Address
 {
-    public Address(string street, string number, string district, string city, string state, string postcode)
+    private Address(string street, string number, string district, string city, string state, string postcode)
     {
         Street = street;
         Number = number;

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Moq;
 using Moq.EntityFrameworkCore;
 using ParkingFlow.WebApi.Domain.Vehicles;
-using ParkingFlow.WebApi.Features.Vehicles.GetVehicleByPlate;
+using ParkingFlow.WebApi.Features.Vehicles.Queries.Get;
 using ParkingFlow.WebApi.Persistence.Database;
 
 namespace ParkingFlow.Tests.UnitTests.Application.Vehicles; 
