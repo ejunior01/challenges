@@ -13,7 +13,7 @@ public class CNPJTest
         cnpj.Value.Should().NotBeNullOrEmpty();
     }
 
-     [Theory]
+    [Theory]
     [InlineData("AAA")]
     [InlineData("1234")]
     [InlineData("12.345.678/000195")]
@@ -26,7 +26,7 @@ public class CNPJTest
     {
         var act = () =>
         {
-            var _ =  CNPJ.Create(value);
+            var _ = CNPJ.Create(value);
 
         };
 
