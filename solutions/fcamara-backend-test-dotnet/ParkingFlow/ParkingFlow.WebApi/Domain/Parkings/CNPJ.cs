@@ -16,10 +16,10 @@ public partial class CNPJ
         if (string.IsNullOrWhiteSpace(value))
             throw new InvalidOperationException();
 
-        if (!CNPJRegex().IsMatch(value))
+        if (!CNPJRegex().IsMatch(value.Trim()))
             throw new InvalidOperationException();
 
-        return new CNPJ(value.ToUpper());
+        return new CNPJ(value.Trim());
     }
 
     [GeneratedRegex(@"^(\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}|\d{14})$")]
