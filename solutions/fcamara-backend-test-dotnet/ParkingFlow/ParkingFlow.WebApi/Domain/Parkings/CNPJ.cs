@@ -19,9 +19,20 @@ public partial class CNPJ
         if (!CNPJRegex().IsMatch(value.Trim()))
             throw new InvalidOperationException();
 
-        return new CNPJ(value.Trim());
+        value = value.Trim();
+        value = CNPJNormalizationRegex().Replace(value, "");
+
+        return new CNPJ(value);
     }
+
+    public static implicit operator string(CNPJ cnpj) => cnpj.Value;
+
+    public static implicit operator CNPJ(string cnpj) => CNPJ.Create(cnpj);
 
     [GeneratedRegex(@"^(\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}|\d{14})$")]
     private static partial Regex CNPJRegex();
+
+    [GeneratedRegex(@"\D")]
+    private static partial Regex CNPJNormalizationRegex();
+
 }
