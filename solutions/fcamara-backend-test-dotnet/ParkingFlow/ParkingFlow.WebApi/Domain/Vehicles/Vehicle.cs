@@ -7,7 +7,7 @@ public class Vehicle : Entity
 {
     private Vehicle() { }
 
-    public Vehicle(string brand, string model, string color, Plate plate, TypeVehicle type)
+    public Vehicle(string brand, string model, string color, Plate plate, TypeVehicle type): base()
     {
         Guard.IsNotNullOrWhiteSpace(brand, nameof(brand));
         Guard.IsNotNullOrWhiteSpace(model, nameof(model));
@@ -16,7 +16,6 @@ public class Vehicle : Entity
         Guard.IsGreaterThanOrEqualTo(model.Length, 2, nameof(model));
         Guard.IsGreaterThanOrEqualTo(color.Length, 2, nameof(color));
 
-        Id = Guid.NewGuid();
         Brand = brand;
         Model = model;
         Color = color;
@@ -24,7 +23,6 @@ public class Vehicle : Entity
         Type = type;
     }
 
-    public Guid Id { get; private set; }
     public string Brand { get; private set; }
     public string Model { get; private set; }
     public string Color { get; private set; }
