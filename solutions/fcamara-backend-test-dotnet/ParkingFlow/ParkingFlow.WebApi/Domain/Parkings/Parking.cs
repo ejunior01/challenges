@@ -5,6 +5,8 @@ namespace ParkingFlow.WebApi.Domain.Parkings;
 
 public class Parking: Entity
 {
+    private Parking() { }
+
     public string Name { get; private set; }
     public CNPJ CNPJ { get; private set; }
     public string Street { get; private set; }
