@@ -32,6 +32,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\ParkingFlow.Domain\ParkingFlow.Domain.csproj" />
         <ProjectReference Include="..\ParkingFlow.WebApi\ParkingFlow.WebApi.csproj" />
     </ItemGroup>
 
