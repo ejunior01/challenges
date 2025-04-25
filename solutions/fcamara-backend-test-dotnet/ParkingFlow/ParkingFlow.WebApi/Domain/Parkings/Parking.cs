@@ -1,5 +1,5 @@
-﻿using ParkingFlow.WebApi.Common.Abstracts;
-using ParkingFlow.WebApi.Common.Contracts;
+﻿using ParkingFlow.Domain.Core.Guards;
+using ParkingFlow.WebApi.Common.Abstracts;
 
 namespace ParkingFlow.WebApi.Domain.Parkings;
 
@@ -55,14 +55,14 @@ public class Parking: Entity
 
     private static void ValidateInputs(string name, string street, string number, string district, string city, string state, string postcode, string phone, int capacityCar, int capacityMotorcycle)
     {
-        Guard.IsNotNullOrWhiteSpace(name, nameof(name));
-        Guard.IsNotNullOrWhiteSpace(phone, nameof(phone));
-        Guard.IsGreaterThanOrEqualTo(capacityCar, 1, nameof(capacityCar));
-        Guard.IsGreaterThanOrEqualTo(capacityMotorcycle, 1, nameof(capacityMotorcycle));
-        Guard.IsNotNullOrWhiteSpace(street, nameof(street));
-        Guard.IsNotNullOrWhiteSpace(number, nameof(number));
-        Guard.IsNotNullOrWhiteSpace(district, nameof(district));
-        Guard.IsNotNullOrWhiteSpace(city, nameof(city));
-        Guard.IsNotNullOrWhiteSpace(state, nameof(state));
+        name.NotNull().MinLength(2);
+        phone.NotNull().MinLength(8);
+        state.NotNull().MinLength(2);
+        city.NotNull().MinLength(2);
+        district.NotNull().MinLength(2);
+        number.NotNull().MinLength(1);
+        street.NotNull().MinLength(2);
+        capacityCar.NotZero().GreaterThanOrEqualsTo(1);
+        capacityMotorcycle.NotZero().GreaterThanOrEqualsTo(1);
     }
 }

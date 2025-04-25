@@ -17,10 +17,10 @@ public class ParkingTest
     }
 
     [Theory]
-    [InlineData("Shopping Acme", "1105150215", 15, 0, typeof(ArgumentOutOfRangeException))]
-    [InlineData("Shopping Acme", "1105150215", 0, 10, typeof(ArgumentOutOfRangeException))]
+    [InlineData("Shopping Acme", "1105150215", 15, 0, typeof(ArgumentException))]
+    [InlineData("Shopping Acme", "1105150215", 0, 10, typeof(ArgumentException))]
     [InlineData(null, "1105150215", 15, 2, typeof(ArgumentNullException))]
-    public void Should_throw_exception_when_creating_parking_with_invalid_values(string name, string phone, int capacityCar, int capacityMotorcycle, Type  exceptionType)
+    public void Should_throw_exception_when_creating_parking_with_invalid_values(string name, string phone, int capacityCar, int capacityMotorcycle, Type exceptionType)
     {
 
         var cnpj = CNPJ.Create("12.345.678/0001-95");
