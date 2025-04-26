@@ -1,4 +1,5 @@
-﻿namespace ParkingFlow.WebApi.Common.Abstracts;
+﻿namespace ParkingFlow.Domain.Core.Abstracts;
+
 public abstract class Entity : IEquatable<Entity>
 {
     protected Entity() => Id = Guid.NewGuid();

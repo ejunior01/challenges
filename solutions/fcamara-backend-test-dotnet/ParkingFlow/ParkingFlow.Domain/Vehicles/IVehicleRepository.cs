@@ -1,4 +1,4 @@
-﻿namespace ParkingFlow.WebApi.Domain.Vehicles;
+﻿namespace ParkingFlow.Domain.Vehicles;
 
 public interface IVehicleRepository
 {

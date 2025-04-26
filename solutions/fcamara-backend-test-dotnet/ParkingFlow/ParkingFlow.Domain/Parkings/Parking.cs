@@ -1,9 +1,9 @@
-﻿using ParkingFlow.Domain.Core.Guards;
-using ParkingFlow.WebApi.Common.Abstracts;
+﻿using ParkingFlow.Domain.Core.Abstracts;
+using ParkingFlow.Domain.Core.Guards;
 
-namespace ParkingFlow.WebApi.Domain.Parkings;
+namespace ParkingFlow.Domain.Parkings;
 
-public class Parking: Entity
+public class Parking : Entity
 {
     private Parking() { }
 
@@ -19,7 +19,7 @@ public class Parking: Entity
     public int CapacityCar { get; private set; }
     public int CapacityMotorcycle { get; private set; }
 
-    public Parking(string name, CNPJ cnpj, string street, string number, string district, string city, string state, string postcode, string phone, int capacityCar, int capacityMotorcycle): base()
+    public Parking(string name, CNPJ cnpj, string street, string number, string district, string city, string state, string postcode, string phone, int capacityCar, int capacityMotorcycle) : base()
     {
         ValidateInputs(name, street, number, district, city, state, postcode, phone, capacityCar, capacityMotorcycle);
 
@@ -38,7 +38,7 @@ public class Parking: Entity
 
     public void Update(string name, CNPJ cnpj, string street, string number, string district, string city, string state, string postcode, string phone, int capacityCar, int capacityMotorcycle)
     {
-        ValidateInputs(name,  street,  number,  district,  city,  state, postcode, phone, capacityCar, capacityMotorcycle);
+        ValidateInputs(name, street, number, district, city, state, postcode, phone, capacityCar, capacityMotorcycle);
 
         Name = name;
         CNPJ = cnpj;

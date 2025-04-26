@@ -1,4 +1,4 @@
-﻿namespace ParkingFlow.WebApi.Domain.Parkings;
+﻿namespace ParkingFlow.Domain.Parkings;
 
 public interface IParkingRepository
 {
