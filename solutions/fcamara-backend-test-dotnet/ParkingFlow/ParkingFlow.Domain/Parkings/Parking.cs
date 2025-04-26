@@ -55,14 +55,15 @@ public class Parking : Entity
 
     private static void ValidateInputs(string name, string street, string number, string district, string city, string state, string postcode, string phone, int capacityCar, int capacityMotorcycle)
     {
-        name.NotNull().MinLength(2);
-        phone.NotNull().MinLength(8);
-        state.NotNull().MinLength(2);
-        city.NotNull().MinLength(2);
-        district.NotNull().MinLength(2);
-        number.NotNull().MinLength(1);
-        street.NotNull().MinLength(2);
+        name.NotEmpty().MinLength(2);
+        phone.NotEmpty().MinLength(8);
+        state.NotEmpty().MinLength(2);
+        city.NotEmpty().MinLength(2);
+        district.NotEmpty().MinLength(2);
+        number.NotEmpty();
+        street.NotEmpty().MinLength(2);
         capacityCar.NotZero().GreaterThanOrEqualsTo(1);
         capacityMotorcycle.NotZero().GreaterThanOrEqualsTo(1);
+        postcode.NotEmpty().HasLength(9);
     }
 }
