@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using FluentResults;
+using System.Text.RegularExpressions;
 
 namespace ParkingFlow.Domain.Parkings;
 
@@ -11,23 +12,22 @@ public partial class CNPJ
 
     public string Value { get; private set; }
 
-    public static CNPJ Create(string value)
+    public static Result<CNPJ> Create(string value)
     {
         if (string.IsNullOrWhiteSpace(value))
-            throw new InvalidOperationException();
+            return Result.Fail(new Error("Value cannot be null."));
+
 
         if (!CNPJRegex().IsMatch(value.Trim()))
-            throw new InvalidOperationException();
+            return Result.Fail(new Error("Value does not match a valid format."));
 
-        value = value.Trim();
-        value = CNPJNormalizationRegex().Replace(value, "");
+        value = CNPJNormalizationRegex().Replace(value.Trim(), "");
 
-        return new CNPJ(value);
+        return Result.Ok(new CNPJ(value));
     }
 
     public static implicit operator string(CNPJ cnpj) => cnpj.Value;
 
-    public static implicit operator CNPJ(string cnpj) => Create(cnpj);
 
     [GeneratedRegex(@"^(\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}|\d{14})$")]
     private static partial Regex CNPJRegex();

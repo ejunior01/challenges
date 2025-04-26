@@ -12,11 +12,14 @@ public class CNPJTest
     [InlineData("12345678000195")]
     [InlineData(" 12345678000195")]
     [InlineData("12345678000195 ")]
-    public void Should_create_cnpj_when_valid_input(string input)
+    public void Should_Result_Sucess_When_Creating_CNPJ_With_Valid_Input(string input)
     {
+        // Arrange & Act
         var cnpj = CNPJ.Create(input);
 
-        cnpj.Value.Should().NotBeNullOrEmpty();
+        // Assert
+        cnpj.IsSuccess.Should().BeTrue();
+        cnpj.Value.Should().NotBeNull();
     }
 
     [Theory]
@@ -36,14 +39,14 @@ public class CNPJTest
     [InlineData("")]
     [InlineData(" ")]
     [InlineData(null)]
-    public void Should_throw_exception_when_creating_plate_with_invalid_value(string input)
+    public void Should_Result_Failed_When_Creating_CNPJ_With_Invalid_Value(string input)
     {
-        var act = () =>
-        {
-            var _ = CNPJ.Create(input);
+        // Arrange & Act
+        var cnpj = CNPJ.Create(input);
 
-        };
-
-        act.Should().Throw<InvalidOperationException>();
+        // Assert
+        cnpj.IsFailed.Should().BeTrue();
+        cnpj.Errors.Should().HaveCount(1);
+    
     }
 }

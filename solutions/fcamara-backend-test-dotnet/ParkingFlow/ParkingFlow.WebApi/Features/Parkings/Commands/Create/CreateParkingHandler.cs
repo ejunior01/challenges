@@ -16,7 +16,12 @@ public class CreateParkingHandler(IParkingRepository parkingRepository, IUnitOfW
 
         var cnpj = CNPJ.Create(command.CNPJ);
 
-        var parking = new Parking(command.Name, cnpj, command.Street, command.Number, command.District, command.City, command.State,
+        if(cnpj.IsFailed)
+        {
+            return Result.Fail<Parking>(cnpj.Errors);
+        }
+
+        var parking = new Parking(command.Name, cnpj.Value, command.Street, command.Number, command.District, command.City, command.State,
             command.Postcode, command.Phone, command.CapacityCar, command.CapacityMotorcycle);
 
         parkingRepository.Add(parking);

@@ -11,13 +11,18 @@ public class UpdateParkingHandler(IParkingRepository parkingRepository, IUnitOfW
         CancellationToken cancellationToken = default)
     {
 
-        var cnpj = CNPJ.Create(command.CNPJ);
-
         var parking = await parkingRepository.GetParkingByIdAsync(command.Id);
 
         if (parking is null) return Result.Fail(new Error($"Parking {command.Id} not found"));
 
-        parking.Update(command.Name, cnpj, command.Street, command.Number, command.District, command.City, command.State, command.Postcode, command.Phone, command.CapacityCar, command.CapacityMotorcycle);
+        var cnpj = CNPJ.Create(command.CNPJ);
+
+        if(cnpj.IsFailed)
+        {
+            return Result.Fail<Parking>(cnpj.Errors);
+        }
+
+        parking.Update(command.Name, cnpj.Value, command.Street, command.Number, command.District, command.City, command.State, command.Postcode, command.Phone, command.CapacityCar, command.CapacityMotorcycle);
 
         await unitOfWork.SaveChangesAsync(cancellationToken);
 

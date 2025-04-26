@@ -9,7 +9,7 @@ public class ParkingTest
     public void Should_create_parking_when_valid_input()
     {
         var cnpj = CNPJ.Create("12.345.678/0001-95");
-        var parking = new Parking("Shopping Acme", cnpj, "R. dos Estudantes", "37", "Liberdade", "São Paulo", "SP", "01505-000", "1105150215", 15, 10);
+        var parking = new Parking("Shopping Acme", cnpj.Value, "R. dos Estudantes", "37", "Liberdade", "São Paulo", "SP", "01505-000", "1105150215", 15, 10);
 
         parking.Should().NotBeNull();
         parking.Name.Should().Be("Shopping Acme");
@@ -27,7 +27,7 @@ public class ParkingTest
 
         var act = () =>
         {
-            var _ = new Parking(name, cnpj, "R. dos Estudantes", "37", "Liberdade", "São Paulo", "SP", "01505-000", phone, capacityCar, capacityMotorcycle);
+            var _ = new Parking(name, cnpj.Value, "R. dos Estudantes", "37", "Liberdade", "São Paulo", "SP", "01505-000", phone, capacityCar, capacityMotorcycle);
 
         };
 
