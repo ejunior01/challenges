@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
-using ParkingFlow.WebApi.Domain.Parkings;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using ParkingFlow.Domain.Parkings;
 
 namespace ParkingFlow.WebApi.Persistence.Configurations;
 

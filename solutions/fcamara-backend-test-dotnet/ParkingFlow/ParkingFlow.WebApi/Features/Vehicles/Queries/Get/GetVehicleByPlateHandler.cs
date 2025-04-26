@@ -1,7 +1,7 @@
 ﻿using FluentResults;
 using Microsoft.EntityFrameworkCore;
+using ParkingFlow.Domain.Vehicles;
 using ParkingFlow.WebApi.Common.Abstracts;
-using ParkingFlow.WebApi.Domain.Vehicles;
 using ParkingFlow.WebApi.Persistence.Database;
 
 namespace ParkingFlow.WebApi.Features.Vehicles.Queries.Get;

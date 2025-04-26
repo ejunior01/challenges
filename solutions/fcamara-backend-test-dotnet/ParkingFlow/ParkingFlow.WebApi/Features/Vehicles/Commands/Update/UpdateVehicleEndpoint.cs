@@ -2,7 +2,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using ParkingFlow.WebApi.Common.Contracts;
-using ParkingFlow.WebApi.Features.Vehicles.Commands.Update;
 
 namespace ParkingFlow.WebApi.Features.Vehicles.Commands.Update;
 

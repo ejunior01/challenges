@@ -1,7 +1,6 @@
 ﻿using FluentResults;
+using ParkingFlow.Domain.Vehicles;
 using ParkingFlow.WebApi.Common.Abstracts;
-using ParkingFlow.WebApi.Domain.Vehicles;
-using Plate = ParkingFlow.WebApi.Domain.Vehicles.Plate;
 
 namespace ParkingFlow.WebApi.Features.Vehicles.Commands.Create;
 

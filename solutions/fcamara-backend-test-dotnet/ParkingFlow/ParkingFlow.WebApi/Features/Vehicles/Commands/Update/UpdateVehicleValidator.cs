@@ -1,5 +1,4 @@
 ﻿using FluentValidation;
-using ParkingFlow.WebApi.Features.Vehicles.Commands.Update;
 
 namespace ParkingFlow.WebApi.Features.Vehicles.Commands.Update;
 

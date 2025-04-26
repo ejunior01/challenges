@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using Moq;
+using ParkingFlow.Domain.Vehicles;
 using ParkingFlow.WebApi.Common.Abstracts;
-using ParkingFlow.WebApi.Domain.Vehicles;
 using ParkingFlow.WebApi.Features.Vehicles.Commands.Create;
 
 namespace ParkingFlow.Tests.UnitTests.Application.Vehicles;

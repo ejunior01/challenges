@@ -1,4 +1,5 @@
-﻿using ParkingFlow.WebApi.Domain.Vehicles;
+﻿
+using ParkingFlow.Domain.Vehicles;
 
 namespace ParkingFlow.WebApi.Features.Vehicles.Commands.Update;
 

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ParkingFlow.Domain.Parkings;
+using ParkingFlow.Domain.Vehicles;
 using ParkingFlow.WebApi.Common.Abstracts;
-using ParkingFlow.WebApi.Domain.Parkings;
-using ParkingFlow.WebApi.Domain.Vehicles;
 using System.Reflection;
 
 namespace ParkingFlow.WebApi.Persistence.Database;

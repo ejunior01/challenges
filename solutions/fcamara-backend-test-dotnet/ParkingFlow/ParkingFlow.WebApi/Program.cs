@@ -1,10 +1,10 @@
 using Carter;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using ParkingFlow.Domain.Parkings;
+using ParkingFlow.Domain.Vehicles;
 using ParkingFlow.WebApi.Common.Abstracts;
 using ParkingFlow.WebApi.Common.Behaviors;
-using ParkingFlow.WebApi.Domain.Parkings;
-using ParkingFlow.WebApi.Domain.Vehicles;
 using ParkingFlow.WebApi.Middleware;
 using ParkingFlow.WebApi.Persistence.Database;
 using ParkingFlow.WebApi.Persistence.Repositories;

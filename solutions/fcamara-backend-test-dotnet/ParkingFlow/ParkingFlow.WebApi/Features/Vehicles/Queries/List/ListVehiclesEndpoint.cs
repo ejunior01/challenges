@@ -16,8 +16,8 @@ public class ListVehiclesEndpoint : ICarterModule
     private static async Task<IResult> Handler(
          ISender sender,
         CancellationToken cancellationToken,
-        [FromQuery] int page=1,
-        [FromQuery] int pageSize=10
+        [FromQuery] int page = 1,
+        [FromQuery] int pageSize = 10
        )
     {
         var query = new ListVehiclesQuery(page, pageSize);

@@ -1,5 +1,5 @@
 using FluentAssertions;
-using ParkingFlow.WebApi.Domain.Parkings;
+using ParkingFlow.Domain.Parkings;
 
 namespace ParkingFlow.Tests.UnitTests.Domain.Parkings;
 

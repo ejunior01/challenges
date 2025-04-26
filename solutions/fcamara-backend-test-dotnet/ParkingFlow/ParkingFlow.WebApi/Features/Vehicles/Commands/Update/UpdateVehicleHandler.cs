@@ -1,7 +1,6 @@
 ﻿using FluentResults;
+using ParkingFlow.Domain.Vehicles;
 using ParkingFlow.WebApi.Common.Abstracts;
-using ParkingFlow.WebApi.Domain.Vehicles;
-using ParkingFlow.WebApi.Features.Vehicles.Commands.Update;
 
 namespace ParkingFlow.WebApi.Features.Vehicles.Commands.Update;
 
@@ -15,10 +14,9 @@ public class UpdateVehicleHandler(IVehicleRepository vehicleRepository, IUnitOfW
 
         if (vehicle is null) return Result.Fail(new Error($"Vehicle {command.Plate} not found"));
 
-        vehicle.ChangeBrand(command.Brand);
-        vehicle.ChangeModel(command.Model);
-        vehicle.ChangeColor(command.Color);
-        vehicle.ChangeType(command.Type);
+        var plate = Plate.Create(command.Plate);
+
+        vehicle.Update(command.Brand, command.Model, command.Color, plate, command.Type);
 
         await unitOfWork.SaveChangesAsync(cancellationToken);
 

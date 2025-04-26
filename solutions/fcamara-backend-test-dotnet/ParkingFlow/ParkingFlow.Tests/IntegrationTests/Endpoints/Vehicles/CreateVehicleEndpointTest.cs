@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
+using ParkingFlow.Domain.Vehicles;
 using ParkingFlow.Tests.Fixtures;
 using ParkingFlow.WebApi.Common.Contracts;
-using ParkingFlow.WebApi.Domain.Vehicles;
 using ParkingFlow.WebApi.Features.Vehicles.Commands.Create;
 using System.Net;
 using System.Net.Http.Json;

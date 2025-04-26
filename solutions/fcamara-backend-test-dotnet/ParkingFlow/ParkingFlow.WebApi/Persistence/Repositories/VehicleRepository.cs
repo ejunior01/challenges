@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ParkingFlow.WebApi.Domain.Vehicles;
+using ParkingFlow.Domain.Vehicles;
 using ParkingFlow.WebApi.Persistence.Database;
 
 namespace ParkingFlow.WebApi.Persistence.Repositories;

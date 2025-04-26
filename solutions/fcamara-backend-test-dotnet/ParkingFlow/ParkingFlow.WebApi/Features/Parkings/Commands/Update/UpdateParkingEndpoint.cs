@@ -20,7 +20,7 @@ public class UpdateParkingEndpoint : ICarterModule
         ISender sender,
         CancellationToken cancellationToken)
     {
-        
+
         var command = new UpdateParkingCommand(
                                 id,
                                 request.Name,

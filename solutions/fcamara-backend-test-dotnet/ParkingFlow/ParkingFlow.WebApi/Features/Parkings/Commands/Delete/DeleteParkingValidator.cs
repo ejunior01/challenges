@@ -6,7 +6,7 @@ public class DeleteParkingValidator : AbstractValidator<DeleteParkingCommand>
 {
     public DeleteParkingValidator()
     {
-        RuleFor(x => x.Id )
+        RuleFor(x => x.Id)
             .NotNull()
             .NotEmpty();
     }

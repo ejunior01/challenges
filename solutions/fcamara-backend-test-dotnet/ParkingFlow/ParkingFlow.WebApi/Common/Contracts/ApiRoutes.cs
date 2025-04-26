@@ -10,7 +10,7 @@ public static class ApiRoutes
         public const string Get = "vehicles";
         public const string GetById = "vehicles/{plate}";
     }
-    
+
     public static class Parkings
     {
         public const string Create = "parkings";

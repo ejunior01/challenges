@@ -1,6 +1,6 @@
 ﻿using FluentResults;
+using ParkingFlow.Domain.Parkings;
 using ParkingFlow.WebApi.Common.Abstracts;
-using ParkingFlow.WebApi.Domain.Parkings;
 
 namespace ParkingFlow.WebApi.Features.Parkings.Commands.Update;
 
