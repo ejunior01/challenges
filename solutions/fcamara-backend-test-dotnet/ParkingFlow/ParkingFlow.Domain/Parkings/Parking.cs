@@ -55,15 +55,15 @@ public class Parking : Entity
 
     private static void ValidateInputs(string name, string street, string number, string district, string city, string state, string postcode, string phone, int capacityCar, int capacityMotorcycle)
     {
-        name.NotEmpty().MinLength(2);
-        phone.NotEmpty().MinLength(8);
-        state.NotEmpty().MinLength(2);
-        city.NotEmpty().MinLength(2);
-        district.NotEmpty().MinLength(2);
-        number.NotEmpty();
-        street.NotEmpty().MinLength(2);
-        capacityCar.NotZero().GreaterThanOrEqualsTo(1);
-        capacityMotorcycle.NotZero().GreaterThanOrEqualsTo(1);
-        postcode.NotEmpty().HasLength(9);
+        name.NotEmpty().MinLength(2,argumentName:"name");
+        phone.NotEmpty().MinLength(8,argumentName:"phone");
+        state.NotEmpty().MinLength(2,argumentName:"state");
+        city.NotEmpty().MinLength(2,argumentName:"city");
+        district.NotEmpty().MinLength(2,argumentName:"district");
+        number.NotEmpty().MaxLength(10,argumentName:"number");
+        street.NotEmpty().MinLength(2,argumentName:"street");
+        capacityCar.NotZero().GreaterThanOrEqualsTo(1,argumentName:"capacityCar");
+        capacityMotorcycle.NotZero().GreaterThanOrEqualsTo(1,argumentName:"capacityMotorcycle");
+        postcode.NotEmpty().HasLength(9,argumentName:"postcode");
     }
 }
