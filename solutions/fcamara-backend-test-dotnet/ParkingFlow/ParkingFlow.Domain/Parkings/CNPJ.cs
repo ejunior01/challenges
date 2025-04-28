@@ -15,11 +15,11 @@ public partial class CNPJ
     public static Result<CNPJ> Create(string value)
     {
         if (string.IsNullOrWhiteSpace(value))
-            return Result.Fail(new Error("Value cannot be null."));
+            return Result.Fail(new Error("CNPJ cannot be null."));
 
 
         if (!CNPJRegex().IsMatch(value.Trim()))
-            return Result.Fail(new Error("Value does not match a valid format."));
+            return Result.Fail(new Error("CNPJ does not match a valid format."));
 
         value = CNPJNormalizationRegex().Replace(value.Trim(), "");
 
