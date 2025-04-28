@@ -10,7 +10,7 @@ namespace ParkingFlow.Tests.UnitTests.Application.Parkings;
 public class CreateParkingHandlerTest
 {
     [Fact]
-    public async Task Should_Result_Success_When_Handler_Creates_Parking_With_Valid_Command()
+    public async Task Should_Result_Success_When_Handler_Creating_Parking_With_Valid_Command()
     {
         // Arrange
         var unitOfWork = new Mock<IUnitOfWork>();
@@ -52,7 +52,7 @@ public class CreateParkingHandlerTest
     }
 
     [Fact]
-    public async Task Should_Result_Failed_When_Handler_Creates_Parking_With_Existing_Name()
+    public async Task Should_Result_Failed_When_Handler_Creating_Parking_With_Existing_Name()
     {
         // Arrange
         var unitOfWork = new Mock<IUnitOfWork>();
@@ -89,8 +89,12 @@ public class CreateParkingHandlerTest
         unitOfWork.Verify(u => u.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Never());
     }
 
-    [Fact]
-    public async Task Should_Result_Failed_When_Handler_Creates_Parking_With_Invalid_CNPJ()
+    [Theory]
+    [InlineData("invalid-cnpj", "CNPJ does not match a valid format.")]
+    [InlineData(null, "CNPJ cannot be null.")]
+    [InlineData("", "CNPJ cannot be null.")]
+    [InlineData(" ", "CNPJ cannot be null.")]
+    public async Task Should_Result_Failed_When_Handler_Creating_Parking_With_Invalid_CNPJ(string cnpj,string message)
     {
         // Arrange
         var unitOfWork = new Mock<IUnitOfWork>();
@@ -100,7 +104,7 @@ public class CreateParkingHandlerTest
 
         var command = new CreateParkingCommand(
             Name: "Estacionamento Central",
-            CNPJ: "invalid-cnpj", 
+            CNPJ: cnpj, 
             Street: "Rua Principal",
             Number: "123",
             District: "Centro",
@@ -120,6 +124,48 @@ public class CreateParkingHandlerTest
         // Assert
         result.IsFailed.Should().BeTrue();
         result.Errors.Should().NotBeEmpty();
+        result.Errors.First().Message.Should().Be(message);
+        
+        parkingRepository.Verify(r => r.Add(It.IsAny<Parking>()), Times.Never());
+        unitOfWork.Verify(u => u.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Never());
+    }
+
+    [Theory]
+    [InlineData("a", typeof(ArgumentOutOfRangeException), "The value ('a') must have a minimum length of 2 (Parameter 'name')")]
+    [InlineData(null, typeof(ArgumentException), "The value of 'name' cannot be empty. (Parameter 'name')")]
+    [InlineData("",  typeof(ArgumentException),"The value of 'name' cannot be empty. (Parameter 'name')")]
+    [InlineData(" ",  typeof(ArgumentException),"The value of 'name' cannot be empty. (Parameter 'name')")]
+    public async Task Should_Result_Failed_When_Handler_Creating_Parking_With_Invalid_Name(string name, Type exceptionType, string message)
+    {
+        // Arrange
+        var unitOfWork = new Mock<IUnitOfWork>();
+        var parkingRepository = new Mock<IParkingRepository>();
+
+        parkingRepository.Setup(r => r.ExistsParkingByNameAsync(It.IsAny<string>())).ReturnsAsync(false);
+
+        var command = new CreateParkingCommand(
+            Name: name,
+            CNPJ: "12.345.678/0001-99",
+            Street: "Rua Principal",
+            Number: "123",
+            District: "Centro",
+            City: "São Paulo",
+            State: "SP",
+            Postcode: "01000-000",
+            Phone: "(11) 99999-9999",
+            CapacityCar: 50,
+            CapacityMotorcycle: 20
+        );
+
+        var handler = new CreateParkingHandler(parkingRepository.Object, unitOfWork.Object);
+
+        // Act
+       var act = async () => await handler.Handle(command);
+
+        // Assert
+        act.Should().ThrowAsync<Exception>()
+                .Where(e => e.GetType() == exceptionType)
+                .WithMessage(message);
 
         parkingRepository.Verify(r => r.Add(It.IsAny<Parking>()), Times.Never());
         unitOfWork.Verify(u => u.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Never());
