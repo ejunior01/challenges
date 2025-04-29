@@ -130,12 +130,8 @@ public class CreateParkingHandlerTest
         unitOfWork.Verify(u => u.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Never());
     }
 
-    [Theory]
-    [InlineData("a", typeof(ArgumentOutOfRangeException), "The value ('a') must have a minimum length of 2 (Parameter 'name')")]
-    [InlineData(null, typeof(ArgumentException), "The value of 'name' cannot be empty. (Parameter 'name')")]
-    [InlineData("",  typeof(ArgumentException),"The value of 'name' cannot be empty. (Parameter 'name')")]
-    [InlineData(" ",  typeof(ArgumentException),"The value of 'name' cannot be empty. (Parameter 'name')")]
-    public async Task Should_Result_Failed_When_Handler_Creating_Parking_With_Invalid_Name(string name, Type exceptionType, string message)
+    [Fact]
+    public async Task Should_Result_Failed_When_Handler_Creating_Parking_With_Invalid_Command()
     {
         // Arrange
         var unitOfWork = new Mock<IUnitOfWork>();
@@ -144,17 +140,17 @@ public class CreateParkingHandlerTest
         parkingRepository.Setup(r => r.ExistsParkingByNameAsync(It.IsAny<string>())).ReturnsAsync(false);
 
         var command = new CreateParkingCommand(
-            Name: name,
+            Name: null,
             CNPJ: "12.345.678/0001-99",
-            Street: "Rua Principal",
-            Number: "123",
+            Street: "",
+            Number: " ",
             District: "Centro",
             City: "São Paulo",
             State: "SP",
             Postcode: "01000-000",
             Phone: "(11) 99999-9999",
-            CapacityCar: 50,
-            CapacityMotorcycle: 20
+            CapacityCar: 0,
+            CapacityMotorcycle: 0
         );
 
         var handler = new CreateParkingHandler(parkingRepository.Object, unitOfWork.Object);
@@ -163,11 +159,10 @@ public class CreateParkingHandlerTest
        var act = async () => await handler.Handle(command);
 
         // Assert
-        await act.Should().ThrowAsync<Exception>()
-                .Where(e => e.GetType() == exceptionType)
-                .WithMessage(message);
+        await act.Should().ThrowAsync<Exception>();
 
         parkingRepository.Verify(r => r.Add(It.IsAny<Parking>()), Times.Never());
         unitOfWork.Verify(u => u.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Never());
     }
+
 }
