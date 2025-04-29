@@ -163,7 +163,7 @@ public class CreateParkingHandlerTest
        var act = async () => await handler.Handle(command);
 
         // Assert
-        act.Should().ThrowAsync<Exception>()
+        await act.Should().ThrowAsync<Exception>()
                 .Where(e => e.GetType() == exceptionType)
                 .WithMessage(message);
 
