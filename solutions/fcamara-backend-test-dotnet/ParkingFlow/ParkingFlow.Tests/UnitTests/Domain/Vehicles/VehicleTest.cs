@@ -37,8 +37,8 @@ public class VehicleTest
     [InlineData("", "Uno", "Preta")]
     [InlineData("Fiat", "", "Preta")]
     [InlineData("Fiat", "Uno", "")]
-    public void Should_throw_exception_when_creating_vehicle_with_values_are_is_null_or_whiteSpace(string? brand,
-        string? model, string? color)
+    public void Should_throw_exception_when_creating_vehicle_with_values_are_is_null_or_whiteSpace(string brand,
+        string model, string color)
     {
         var act = () =>
         {
