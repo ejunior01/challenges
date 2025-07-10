@@ -1,6 +1,7 @@
 using Carter;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using ParkingFlow.Domain.Parkings;
 using ParkingFlow.Domain.Vehicles;
 using ParkingFlow.WebApi.Common.Abstracts;
@@ -47,6 +48,11 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.MapCarter();
 app.UseMiddleware<ExceptionHandlerMiddleware>();
+
+using var scope = app.Services.CreateScope();
+var db = scope.ServiceProvider.GetRequiredService<ParkingFlowDbContext>();
+db.Database.Migrate();
+
 app.Run();
 
 public partial class Program
