@@ -20,7 +20,6 @@ public class VehicleRepository(ParkingFlowDbContext context) : IVehicleRepositor
 
     public async Task<Vehicle?> GetByPlateAsync(string plate)
     {
-        Console.WriteLine(_context.Count());
         return await _context.FirstOrDefaultAsync((v) => v.Plate.Value.Equals(plate));
     }
 

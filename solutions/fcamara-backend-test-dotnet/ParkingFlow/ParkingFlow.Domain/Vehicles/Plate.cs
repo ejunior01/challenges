@@ -22,6 +22,9 @@ public partial class Plate
         return new Plate(value.ToUpper());
     }
 
+    public static implicit operator string(Plate plate) => plate.Value;
+    public override string ToString() => Value;
+
     [GeneratedRegex(@"(^[a-zA-z]{3}-\d{4}$)|(^[a-zA-z]{3}\d{1}[a-zA-z]{1}\d{2}$)")]
     private static partial Regex PlateRegex();
 }

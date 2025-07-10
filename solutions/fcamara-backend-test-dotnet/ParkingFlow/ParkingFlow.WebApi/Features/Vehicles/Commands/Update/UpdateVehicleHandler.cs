@@ -1,13 +1,14 @@
 ﻿using FluentResults;
 using ParkingFlow.Domain.Vehicles;
 using ParkingFlow.WebApi.Common.Abstracts;
+using ParkingFlow.WebApi.Common.Contracts;
 
 namespace ParkingFlow.WebApi.Features.Vehicles.Commands.Update;
 
 public class UpdateVehicleHandler(IVehicleRepository vehicleRepository, IUnitOfWork unitOfWork)
-    : ICommandHandler<UpdateVehicleCommand, Result<Vehicle>>
+    : ICommandHandler<UpdateVehicleCommand, Result<VehicleResponse>>
 {
-    public async Task<Result<Vehicle>> Handle(UpdateVehicleCommand command,
+    public async Task<Result<VehicleResponse>> Handle(UpdateVehicleCommand command,
         CancellationToken cancellationToken = default)
     {
         var vehicle = await vehicleRepository.GetByPlateAsync(command.Plate);
@@ -20,6 +21,8 @@ public class UpdateVehicleHandler(IVehicleRepository vehicleRepository, IUnitOfW
 
         await unitOfWork.SaveChangesAsync(cancellationToken);
 
-        return Result.Ok(vehicle);
+        VehicleResponse vehicleResponse = vehicle;
+
+        return Result.Ok(vehicleResponse);
     }
 }

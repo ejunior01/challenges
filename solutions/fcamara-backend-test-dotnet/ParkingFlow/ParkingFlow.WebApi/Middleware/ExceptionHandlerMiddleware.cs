@@ -20,7 +20,6 @@ internal class ExceptionHandlerMiddleware(RequestDelegate next)
 
     private static async Task HandleExceptionAsync(HttpContext httpContext, Exception exception)
     {
-        Console.WriteLine(exception);
         var (httpStatusCode, errors) = GetHttpStatusCodeAndErrors(exception);
 
         var serializerOptions = new JsonSerializerOptions

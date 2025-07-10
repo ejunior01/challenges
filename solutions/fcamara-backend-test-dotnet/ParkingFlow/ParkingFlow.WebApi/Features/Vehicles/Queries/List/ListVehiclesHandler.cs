@@ -7,9 +7,9 @@ using ParkingFlow.WebApi.Persistence.Database;
 
 namespace ParkingFlow.WebApi.Features.Vehicles.Queries.List;
 public class ListVehiclesHandler(ParkingFlowDbContext context) :
-    IQueryHandler<ListVehiclesQuery, Result<PagedList<Vehicle>>>
+    IQueryHandler<ListVehiclesQuery, Result<PagedList<VehicleResponse>>>
 {
-    public async Task<Result<PagedList<Vehicle>>> Handle(
+    public async Task<Result<PagedList<VehicleResponse>>> Handle(
         ListVehiclesQuery query,
         CancellationToken cancellationToken = default)
     {
@@ -20,9 +20,17 @@ public class ListVehiclesHandler(ParkingFlowDbContext context) :
         var vehicles = await vehicleQuery
             .Skip((query.Page - 1) * query.PageSize)
             .Take(query.PageSize)
+            .Select(v => new VehicleResponse(
+                v.Id,
+                v.Brand,
+                v.Model,
+                v.Color,
+                v.Plate.Value,
+                v.Type
+            ))
             .ToListAsync(cancellationToken);
 
-        var pagedList = new PagedList<Vehicle>(vehicles, query.Page, query.PageSize, total);
+        var pagedList = new PagedList<VehicleResponse>(vehicles, query.Page, query.PageSize, total);
 
         return Result.Ok(pagedList);
     }

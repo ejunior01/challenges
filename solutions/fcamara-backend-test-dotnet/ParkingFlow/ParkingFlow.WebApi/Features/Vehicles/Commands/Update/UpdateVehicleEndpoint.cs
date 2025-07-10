@@ -25,7 +25,7 @@ public class UpdateVehicleEndpoint : ICarterModule
         if (!plate.Equals(request.Plate)) return TypedResults.UnprocessableEntity("Invalid plate");
 
         var command =
-            new UpdateVehicleCommand(request.Brand, request.Model, request.Color, plate, request.Type);
+            new UpdateVehicleCommand(request.Id,request.Brand, request.Model, request.Color, plate, request.Type);
 
         var result = await sender.Send(command, cancellationToken);
 

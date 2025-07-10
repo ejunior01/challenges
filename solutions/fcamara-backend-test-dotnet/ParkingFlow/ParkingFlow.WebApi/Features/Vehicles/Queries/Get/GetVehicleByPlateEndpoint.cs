@@ -20,6 +20,6 @@ public class GetVehicleByPlateEndpoint : ICarterModule
         var command = new GetVehicleByPlateQuery(plate);
         var result = await sender.Send(command, cancellationToken);
 
-        return result.IsFailed ? TypedResults.NotFound(result.Errors) : TypedResults.Ok();
+        return result.IsFailed ? TypedResults.NotFound(result.Errors) : TypedResults.Ok(result.Value);
     }
 }
