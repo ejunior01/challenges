@@ -2,6 +2,7 @@
 using ParkingFlow.Domain.Vehicles;
 using ParkingFlow.Tests.Fixtures;
 using ParkingFlow.WebApi.Common.Contracts;
+using ParkingFlow.WebApi.Features.Vehicles.Commands.Create;
 using ParkingFlow.WebApi.Features.Vehicles.Commands.Update;
 using System.Net;
 using System.Net.Http.Json;
@@ -18,18 +19,26 @@ public class UpdateVehicleEndpointTest(FixtureWebApplicationFactory<Program> fac
     [Fact]
     public async Task Should_return_200_Ok_when_update_vehicles_With_param_is_valid()
     {
+        const string plate = "AAA-1515";
 
-        var command = new UpdateVehicleRequest(
+        var commandCreateVehicle = new CreateVehicleCommand(
             "Fiat",
             "Uno",
             "Preta",
+            plate,
+            TypeVehicle.Car);
+
+        await _httpClient.PostAsJsonAsync($"api/v1/{ApiRoutes.Vehicles.Create}", commandCreateVehicle);
+
+        var commandUpdateVehicle = new UpdateVehicleRequest(
+            Guid.NewGuid(),
+            "Fiat",
+            "Uno",
+            "Vermelho",
             "AAA-1515",
             TypeVehicle.Car);
 
-        const string plate = "AAA-1515";
-
-        await _httpClient.PostAsJsonAsync($"api/v1/{ApiRoutes.Vehicles.Create}", command);
-        var response = await _httpClient.PutAsJsonAsync($"api/v1/vehicles/{plate}", command);
+        var response = await _httpClient.PutAsJsonAsync($"api/v1/vehicles/{plate}", commandUpdateVehicle);
 
         response.Should().BeSuccessful();
         response.Should().HaveStatusCode(HttpStatusCode.OK);
@@ -39,7 +48,9 @@ public class UpdateVehicleEndpointTest(FixtureWebApplicationFactory<Program> fac
     public async Task Should_return_404_NotFound_when_update_vehicles_not_exists()
     {
 
-        var command = new UpdateVehicleRequest("Fiat",
+        var command = new UpdateVehicleRequest(
+            Guid.NewGuid(),
+            "Fiat",
             "Uno",
             "Preta",
             "AAA-1515",

@@ -16,7 +16,7 @@ public class UpdateVehicleHandlerTest
         var vehicle = new Vehicle("Fiat", "Uno", "Preta", Plate.Create("AAA-1515"), TypeVehicle.Car);
         vehicleRepository.Setup((v) => v.GetByPlateAsync(It.IsAny<string>())).ReturnsAsync(vehicle);
 
-        var command = new UpdateVehicleCommand("Fiat", "Uno", "Preta", "AAA-1515", TypeVehicle.Car);
+        var command = new UpdateVehicleCommand(Guid.NewGuid(),"Fiat", "Uno", "Preta", "AAA-1515", TypeVehicle.Car);
         var handler = new UpdateVehicleHandler(vehicleRepository.Object, unitOfWork.Object);
         var result = await handler.Handle(command);
 
@@ -33,7 +33,7 @@ public class UpdateVehicleHandlerTest
 
         vehicleRepository.Setup((v) => v.GetByPlateAsync(It.IsAny<string>())).ReturnsAsync(value: null);
 
-        var command = new UpdateVehicleCommand("Fiat", "Uno", "Preta", "AAA-1515", TypeVehicle.Car);
+        var command = new UpdateVehicleCommand(Guid.NewGuid(),"Fiat", "Uno", "Preta", "AAA-1515", TypeVehicle.Car);
         var handler = new UpdateVehicleHandler(vehicleRepository.Object, unitOfWork.Object);
         var result = await handler.Handle(command);
 

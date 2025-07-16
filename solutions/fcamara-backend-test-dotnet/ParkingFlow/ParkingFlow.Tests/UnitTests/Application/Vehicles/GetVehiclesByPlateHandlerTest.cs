@@ -41,7 +41,7 @@ public class GetVehicleByPlateHandlerTests
         var result = await _handler.Handle(query, CancellationToken.None);
 
         result.IsSuccess.Should().BeTrue();
-        result.Value.Plate.Value.Should().Be("AAA-1515");
+        result.Value.Plate.Should().Be("AAA-1515");
     }
     [Fact]
     public async Task Should_result_fail_When_handler_vehicle_not_exists_plate()

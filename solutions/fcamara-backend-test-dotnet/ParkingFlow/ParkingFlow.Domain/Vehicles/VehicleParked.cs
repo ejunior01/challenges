@@ -20,7 +20,7 @@ public class VehicleParked(Parking parking, Vehicle vehicle)
     {
         amount.GreaterThanOrEqualsTo(0.01, "O valor de pagamento deve ser maior do que zero.");
 
-        var totalHours = (EntryOnUtc - DateTimeOffset.Now).TotalHours;
+        var totalHours = (DateTimeOffset.Now - EntryOnUtc).TotalHours;
         var totalAmout = totalHours * 5.0;
 
         if (totalAmout == amount)
